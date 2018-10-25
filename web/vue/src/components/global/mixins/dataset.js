@@ -6,7 +6,7 @@ var mixin = {
       datasets: [],
       datasetScanstate: 'idle',
       unscannableMakets: []
-    }    
+    }
   },
   methods: {
     scan: function() {
@@ -15,6 +15,7 @@ var mixin = {
       post('scansets', {}, (error, response) => {
         this.datasetScanstate = 'scanned';
 
+        console.log(response);
         this.unscannableMakets = response.errors;
 
         let sets = [];

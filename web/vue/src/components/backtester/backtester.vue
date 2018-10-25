@@ -41,6 +41,7 @@ export default {
       this.backtestState = 'fetching';
 
       post('backtest', this.config, (error, response) => {
+        console.log(response);
         this.backtestState = 'fetched';
         this.backtestResult = response;
       });

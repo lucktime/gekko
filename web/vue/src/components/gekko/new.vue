@@ -166,7 +166,7 @@ export default {
           // the specified market is already being watched,
           // just start a gekko!
           this.startGekko(this.routeToGekko);
-          
+
         } else {
           // the specified market is not yet being watched,
           // we need to create a watcher
@@ -190,6 +190,7 @@ export default {
       post('startGekko', this.watchConfig, next);
     },
     startGekko: function(next) {
+      console.log("startGekko");
       post('startGekko', this.gekkoConfig, next);
     }
   }

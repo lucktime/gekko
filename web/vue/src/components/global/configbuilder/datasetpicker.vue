@@ -11,7 +11,7 @@ div
       table.full
         thead
           tr
-            th 
+            th
             th exchange
             th currency
             th asset
@@ -22,15 +22,15 @@ div
           tr(v-for='(set, i) in datasets')
             td.radio
               input(type='radio', name='dataset', :value='i', v-model='setIndex', v-bind:id='set.id')
-            td 
+            td
               label(v-bind:for='set.id') {{ set.exchange }}
-            td 
+            td
               label(v-bind:for='set.id') {{ set.currency }}
             td
               label(v-bind:for='set.id') {{ set.asset }}
-            td 
+            td
               label(v-bind:for='set.id') {{ fmt(set.from) }}
-            td 
+            td
               label(v-bind:for='set.id') {{ fmt(set.to) }}
             td
               label(v-bind:for='set.id') {{ humanizeDuration(set.to.diff(set.from)) }}
@@ -43,7 +43,7 @@ div
           label(for='customTo') To:
           input(v-model='customTo')
 
-    em(v-else) No Data found 
+    em(v-else) No Data found
       a(href='#/data/importer') Lets add some
 
 </template>

@@ -82,6 +82,7 @@ export default {
   },
   computed: {
     stratrunners: function() {
+      console.log(_.values(this.$store.state.gekkos));
       return _.values(this.$store.state.gekkos)
         .concat(_.values(this.$store.state.archivedGekkos))
           .filter(g => {

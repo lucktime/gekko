@@ -14,7 +14,7 @@ const left = marked(`
 
 ## Gekko
 
-Gekko is a Bitcoin trading bot and backtesting platform that
+Gekko is a Bitcoin trading bot and backtesting platform that 123
 connects to popular Bitcoin exchanges. It is written in javascript
 and runs on nodejs.
 

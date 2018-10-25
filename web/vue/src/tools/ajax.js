@@ -15,6 +15,7 @@ const processResponse = next => (err, res) => {
 }
 
 export const post = (to, data, next) => {
+  console.log(restPath + to);
   superagent
     .post(restPath + to)
     .use(noCache)
