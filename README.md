@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Gekko [![npm](https://img.shields.io/npm/dm/gekko.svg)]() [![Build Status](https://travis-ci.org/askmike/gekko.png)](https://travis-ci.org/askmike/gekko) [![Build status](https://ci.appveyor.com/api/projects/status/github/askmike/gekko?branch=stable&svg=true)](https://ci.appveyor.com/project/askmike/gekko)
 
 ![Gordon Gekko](http://mikevanrossum.nl/static/gekko.jpg)
@@ -26,7 +25,3 @@ Gekko has [a forum](https://forum.gekko.wizb.it/) that is the place for discussi
 ## Final
 
 If Gekko helped you in any way, you can always leave me a tip at (BTC) 13r1jyivitShUiv9FJvjLH7Nh1ZZptumwW
-=======
-# gekko
-gekko自动交易
->>>>>>> e9a57f5fa3e71fd85534ddf00630add2f1ca23c1
