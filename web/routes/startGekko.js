@@ -12,6 +12,7 @@ const base = require('./baseConfig');
 module.exports = function *() {
   const mode = this.request.body.mode;
 
+  console.log(mode);
   let config = {};
 
   _.merge(config, base, this.request.body);

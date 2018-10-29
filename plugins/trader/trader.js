@@ -250,7 +250,7 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
   }
 
   log.debug('Creating order to', side, amount, this.brokerConfig.asset);
-
+  log.debug('Lucky Create ', side, amount, this.price, this.brokerConfig.asset, this.brokerConfig.currency);
   this.deferredEmit('tradeInitiated', {
     id,
     adviceId: advice.id,
@@ -259,7 +259,20 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
     balance: this.balance
   });
 
-  this.order = this.broker.createOrder(type, side, amount);
+
+
+  // $.post("http://lively.exchange.local/api/ilex/autontrade",
+  // {
+  //   quantity:amount,
+  //   action:side,
+  //   price:this.price,
+  //   currency:this.brokerConfig.currency,
+  //   asset:this.brokerConfig.asset
+  // }
+  // ,function(result){
+  //   console.log(result);
+  // });
+  // this.order = this.broker.createOrder(type, side, amount);
 
   this.order.on('fill', f => log.info('[ORDER] partial', side, 'fill, total filled:', f));
   this.order.on('statusChange', s => log.debug('[ORDER] statusChange:', s));

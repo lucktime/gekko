@@ -17,7 +17,7 @@ const Trader = function(config) {
 
   this.name = 'kraken';
   this.since = null;
-  
+
   this.market = _.find(Trader.getCapabilities().markets, (market) => {
     return market.pair[0] === this.currency && market.pair[1] === this.asset
   });

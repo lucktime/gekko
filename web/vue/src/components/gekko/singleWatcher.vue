@@ -138,6 +138,8 @@ export default {
         };
 
       post('getCandles', config, (err, res) => {
+        console.log("singleWatcher");
+        console.log(res);
         this.candleFetch = 'fetched';
         this.candles = res.map(c => {
           c.start = moment.unix(c.start).utc().format();

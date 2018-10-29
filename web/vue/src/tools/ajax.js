@@ -10,12 +10,12 @@ const processResponse = next => (err, res) => {
     return next('no data');
 
   let data = JSON.parse(res.text);
-
   next(false, data);
 }
 
 export const post = (to, data, next) => {
   console.log(restPath + to);
+  console.log(JSON.stringify(data));
   superagent
     .post(restPath + to)
     .use(noCache)

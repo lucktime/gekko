@@ -109,7 +109,7 @@ export default {
 
       if(gekko.events.latest.candle) {
         this.pendingStratrunner = false;
-
+alert('pendingStratrunner');
         this.startGekko((err, resp) => {
           this.$router.push({
             path: `/live-gekkos/${resp.id}`
@@ -136,7 +136,6 @@ export default {
         if(!this.availableApiKeys.includes(this.exchange))
           return alert('Please first configure API keys for this exchange in the config page.')
       }
-
       // internally a live gekko consists of two parts:
       //
       // - a market watcher
@@ -161,7 +160,6 @@ export default {
         }
 
       } else {
-
         if(this.existingMarketWatcher) {
           // the specified market is already being watched,
           // just start a gekko!
@@ -187,10 +185,13 @@ export default {
       });
     },
     startWatcher: function(next) {
+      alert('startGekko');
       post('startGekko', this.watchConfig, next);
     },
     startGekko: function(next) {
       console.log("startGekko");
+      console.log(this.gekkoConfig);
+      console.log(next);
       post('startGekko', this.gekkoConfig, next);
     }
   }

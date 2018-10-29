@@ -1,6 +1,8 @@
 const cache = require('../state/cache');
 const gekkoManager = cache.get('gekkos');
 
+
+console.log(gekkoManager);
 // stops a Gekko
 // requires a post body with an id
 module.exports = function *() {
@@ -16,7 +18,7 @@ module.exports = function *() {
 
   if(!stopped) {
     this.body = { status: 'not ok' }
-    return; 
+    return;
   }
 
   this.body = { status: 'ok' };

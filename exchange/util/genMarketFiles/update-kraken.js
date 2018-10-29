@@ -3,7 +3,7 @@ const fs = require('fs');
 const request = require('request-promise');
 const Promise = require('bluebird');
 
-// Minimum amounts are not queryable, get them here 
+// Minimum amounts are not queryable, get them here
 // https://support.kraken.com/hc/en-us/articles/205893708-What-is-the-minimum-order-size-
 
 let getMinTradeSize = asset => {
@@ -104,10 +104,12 @@ let assetPairsPromise = request({
 Promise.all([assetPromise, assetPairsPromise])
   .then(results => {
     let assets = _.uniq(_.map(results[1], market => {
+      console.log("assets",results[0][market.base]);
       return results[0][market.base].altname;
     }));
 
     let currencies = _.uniq(_.map(results[1], market => {
+      console.log("currencies",results[0][market.base]);
       return results[0][market.quote].altname;
     }));
 
@@ -140,4 +142,4 @@ Promise.all([assetPromise, assetPairsPromise])
     console.log(err);
   });
 
-  
+

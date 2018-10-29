@@ -252,7 +252,6 @@ export default {
       return _.find(this.gekkos, g => {
         if(g.id === this.id)
           return false;
-
         return _.isEqual(watch, g.config.watch);
       });
     },
@@ -314,6 +313,8 @@ export default {
       //   the result before we query it.
       setTimeout(() => {
         post('getCandles', config, (err, res) => {
+          console.log("singleGekko");
+          console.log(res);
           this.candleFetch = 'fetched';
           if(!res || res.error || !_.isArray(res))
             return console.log(res);
