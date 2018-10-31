@@ -20,7 +20,6 @@ const bindAll = exchangeUtils.bindAll;
 const isValidOrder = exchangeUtils.isValidOrder;
 
 
-
 class Broker {
   constructor(config) {
     this.config = config;

@@ -9,7 +9,7 @@
 // helpers
 var _ = require('lodash');
 var log = require('../core/log.js');
-
+// var superagent = require('superagent');
 // let's create our own method
 var method = {};
 
@@ -54,6 +54,46 @@ method.log = function() {
   log.debug('\t', 'macd:', diff.toFixed(digits));
   log.debug('\t', 'signal:', signal.toFixed(digits));
   log.debug('\t', 'macdiff:', macd.result.toFixed(digits));
+
+
+  // var data = {
+  //   "quantity":1,
+  //   "action":1,
+  //   "price":1,
+  //   "currency":1,
+  //   "asset":1
+  // };
+  // superagent.
+  //   post('http://lively.exchange.local/api/ilex/autontrade')
+  //   .send(data)
+  //   .end(function(err, res){
+  //     if(err || !res){
+  //       log.error('IFTTT ERROR:', error)
+  //     }else{
+  //       log.info('IFTTT Message Sent')
+  //     }
+  //   });
+
+
+
+      // var options = {
+      //   body: data,
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   method: 'POST',
+      //   url: ''
+      // }
+
+        // request(options, (error, response, body) => {
+
+        //     if (!error) {
+        //       log.debug('lUCKY send Request===================');
+        //         log.info('Kodi message sent')
+        //     } else {
+        //       log.debug('lUCKY send Request===================');
+        //     }
+        // });
 }
 
 method.check = function() {

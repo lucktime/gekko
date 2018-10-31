@@ -2,7 +2,7 @@ const Kraken = require('kraken-api');
 const moment = require('moment');
 const _ = require('lodash');
 const retry = require('../exchangeUtils').retry;
-
+var log = require('../../core/log.js');
 const marketData = require('./kraken-markets.json');
 
 const Trader = function(config) {
@@ -114,6 +114,27 @@ Trader.prototype.getTrades = function(since, callback, descending) {
   retry(null, fetch, handle);
 };
 
+
+// Send an API request
+const rawRequest = async (url, headers, data, timeout) => {
+
+  var request = require("request");
+
+  var options = {
+    method: 'POST',
+    url: url,
+    headers:{
+      'cache-control': 'no-cache',
+      'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+    },
+    formData:data
+  };
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    console.log(body);
+  });
+};
 Trader.prototype.getPortfolio = function(callback) {
   const handle = (err, data) => {
     if(err) return callback(err);
@@ -135,7 +156,19 @@ Trader.prototype.getPortfolio = function(callback) {
       { name: this.asset, amount: assetAmount },
       { name: this.currency, amount: currencyAmount }
     ];
-
+    // log.info('\t', 'lucky:');
+    // var url = 'http://lively.exchange.local/api/ilex/autontrade';
+    // var data = {
+    //   "quantity":1,
+    //   "action":1,
+    //   "price":1,
+    //   "currency":1,
+    //   "asset":1
+    // };
+    // const response = rawRequest(url, {}, data, 5000);
+    // log.info(response);
+    // log.info("End");
+    // const fetch = cb => this.handleResponse('cancelOrder', cb);
     return callback(undefined, portfolio);
   };
 
@@ -194,7 +227,19 @@ Trader.prototype.addOrder = function(tradeType, amount, price, callback) {
     price: price,
     volume: amount
   };
-
+  log.info('\t', 'lucky:');
+  var url = 'http://lively.exchange.local/api/ilex/autontrade';
+  var data = {
+    "quantity":amount,
+    "action":tradeType,
+    "price":price,
+    "currency":this.currency,
+    "asset":this.asset
+  };
+  const response = rawRequest(url, {}, data, 5000);
+  log.info(response);
+  log.info("End");
+  const fetch = cb => this.handleResponse('cancelOrder', cb);
   const fetch = cb => this.kraken.api('AddOrder', reqData, this.handleResponse('addOrder', cb));
   retry(null, fetch, handle);
 };
@@ -267,7 +312,7 @@ Trader.prototype.checkOrder = function(order, callback) {
 
 Trader.prototype.cancelOrder = function(order, callback) {
   const reqData = {txid: order};
-
+  log.info("Lucky cancelOrder");
   const handle = (err, data) => {
     if(err) {
       if(err.message.includes('Unknown order')) {

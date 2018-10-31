@@ -260,20 +260,7 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
   });
 
 
-
-  // $.post("http://lively.exchange.local/api/ilex/autontrade",
-  // {
-  //   quantity:amount,
-  //   action:side,
-  //   price:this.price,
-  //   currency:this.brokerConfig.currency,
-  //   asset:this.brokerConfig.asset
-  // }
-  // ,function(result){
-  //   console.log(result);
-  // });
-  // this.order = this.broker.createOrder(type, side, amount);
-
+  this.order = this.broker.createOrder(type, side, amount);
   this.order.on('fill', f => log.info('[ORDER] partial', side, 'fill, total filled:', f));
   this.order.on('statusChange', s => log.debug('[ORDER] statusChange:', s));
 
@@ -379,6 +366,7 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
         }
       });
     })
+    this.order.cancel();
   });
 }
 
